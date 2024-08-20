@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>codenerve.com - Welcome!</title>
+    <meta charset="UTF-8">
+    <title>Страница администратора</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+<h1>Страница администратора</h1>
+<h2 th:inline="text"> [[${#httpServletRequest.remoteUser}]]!</h2>
+
+<a th:href="@{/findAllUsers}"class="btn btn-info btn-sm" role="button"> Найти всех пользователей></a>
+<br><br>
+
+<form th:action="@{/findUserByEmail/{email}}" th:object="${user}">
+    <div><label> <b>Email :</b>   <input th:value="${email}" type="text" name="email"/> </label></div>
+    <input type="submit" class="btn btn-info btn-sm" value="Найти пользователя по Email"/><br>
+</form>
+<br>
+
+<form th:action="@{/findUserById/{id}}" th:object="${user}">
+    <div><label> <b>ID :</b>   <input th:value="${id}" type="text" name="id"/> </label></div>
+    <input type="submit" class="btn btn-info btn-sm" value="Найти пользователя по Id"/><br>
+</form>
+<br>
+<form th:action="@{/getUserByPhoneNumber/{phoneNumber}}" th:object="${user}">
+    <div><label> <b>Phone Number:</b>   <input th:value="${phoneNumber}" type="text" name="phoneNumber"/> </label></div>
+    <input type="submit" class="btn btn-info btn-sm"  value="Найти пользователя по номеру телефона"/><br>
+</form>
+<br>
+<form th:action="@{/findUserByLastName/{lastName}}" th:object="${user}">
+    <div><label> <b>Last Name :</b>   <input th:value="${lastName}" type="text" name="lastName"/> </label></div>
+    <input type="submit" class="btn btn-info btn-sm" value="Найти пользователя по Фамилии"/><br>
+
+</form>
+<br>
+<form th:action="@{/get/{userStatus}}" th:object="${user}">
+    <div><label> <b>User status :</b>   <input th:value="${userStatus}" type="text" name="userStatus"/> </label></div>
+    <input type="submit" class="btn btn-info btn-sm" value="Найти всех пользователей по статусу"/><br>
+
+</form>
+<br>
+<br>
+<a th:href="@{/products}"class="btn btn-info btn-sm" role="button"> Найти все товары</a>
+<br>
+<br>
+<a th:href="@{/add-products}" class="btn btn-info btn-sm" role="button"> Добавить товары</a>
+<br>
+<br>
+
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" class="btn btn-success btn-sm" value="Sign Out"/>
+    <br><br>
+    <a th:href="@{/}" class="btn btn-success btn-sm" role="button" >Главная страница</a>
+    <br><br>
+</form>
+</div>
+</body>
+</html>
